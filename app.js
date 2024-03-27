@@ -29,15 +29,15 @@ function setRedOnly() {
 }
 
 function setYellowOnly() {
-    redLight.write(1)
-    yellowLight.write(0)
+    redLight.write(0)
+    yellowLight.write(1)
     greenLight.write(0)
 }
 
 function setGreenOnly() {
-    redLight.write(1)
+    redLight.write(0)
     yellowLight.write(0)
-    greenLight.write(0)
+    greenLight.write(1)
 }
 
 
