@@ -9,15 +9,17 @@ const app = express()
 
 function setNormalLight() {
     //First go to green
-    var lightInterval = setInterval(()=> {
+    // var lightInterval = setInterval(()=> {
         setGreenOnly()
         setTimeout(()=> {
             setYellowOnly()
             setTimeout(()=> {
                 setRedOnly()
+
+                setNormalLight()
             }, 2000)
         }, 2000)   
-    })
+    // })
 
 }
 
