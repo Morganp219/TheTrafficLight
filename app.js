@@ -56,7 +56,8 @@ app.get('/setLight/:color', (request, response)=> {
     isRunningNormal = false
     isRunningBlink = false // clearAll()
     if(request.params.color == "none") {
-
+        clearAll()
+        response.sendStatus(200)
     } else if(request.params.color == "green") {
         setGreenOnly()
         response.sendStatus(200)
