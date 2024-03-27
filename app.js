@@ -1,5 +1,5 @@
 const Gpio = require('onoff').Gpio
-const redLight = new Gpio(16, "out")
+const redLight = new Gpio(12, "out")
 const yellowLight = new Gpio(20, "out")
 const greenLight = new Gpio(21, "out")
 
@@ -16,10 +16,12 @@ function setNormalLight() {
             setTimeout(()=> {
                 setRedOnly()
 
-                setNormalLight()
-            }, 2000)
-        }, 2000)   
-    // })
+                setTimeout(()=> {
+                    setNormalLight()
+                }, 20000)
+            }, 4000)
+        }, 20000)   
+
 
 }
 
