@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #light {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            border: 2px solid #000;
+            background-color: rgb(14, 22, 22);
+        }
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #000;
+            /* margin-bottom: 20px; */
+        }
+        .opacity-25 {
+            opacity: 25%;
+        }
+        .redColor {
+            background-color: #f00;
+        }
+        .yellowColor {
+            background-color: #ff0;
+        }
+        .greenColor {
+            background-color: #0f0;
+        }
+        .flex {
+            display: flex;
+            flex-direction: column;
+        }
+        #modes, #setColor {
+            width: 100px;
+             
+        }
+        #modes, #setColor button {
+            margin: 5px;  
+        }
+        #modes, #setColor h3 {
+            padding: 0;
+            margin: 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="status"></h2>
+    <section>
+        <h4>Current Traffic Light Status</h4>
+        <div id="light">
+            <div id="red" style="margin-top: 20px;" class="circle redColor opacity-25"></div>
+            <div id="yellow" style="margin-top: 20px; margin-bottom: 20px;" class="circle yellowColor opacity-25"></div>
+            <div id="green" style="margin-bottom: 20px;" class="circle greenColor  opacity-25"></div>
+        </div>
+    </section>
+
+    <section>
+        <div id="setColor" class="flex">
+            <h3>Set Modes</h3>
+            <button id="setRed" onclick="setColor('red')">Set Red</button>
+            <button id="setYellow" onclick="setColor('yellow')">Set Yellow</button>
+            <button id="setGreen" onclick="setColor('green')">Set Green</button>
+            <button id="setNone" onclick="setColor('none')">All Off</button>
+        </div>
+    </section>
+
+    <section>
+        <div id="modes" class="flex">
+            <h3>Set Modes</h3>
+            <button onclick="setFunction('normal')" id="normal">Normal</button>
+            <button onclick="setFunction('blinkyellow')" id="blinkyellow">Blink Yellow</button>
+            <button onclick="setFunction('blinkred')" id="blinkred">Blink Red</button>
+        </div>
+    </section>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="traffic.js"></script>
+</body>
+</html>

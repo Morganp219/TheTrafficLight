@@ -2,6 +2,10 @@ const Gpio = require('onoff').Gpio
 const redLight = new Gpio(12, "out")
 const yellowLight = new Gpio(20, "out")
 const greenLight = new Gpio(21, "out")
+const { Server } = require("socket.io");
+
+const server = createServer();
+const io = new Server(server);
 
 const express = require('express')
 
@@ -17,6 +21,10 @@ var yellowLightBlinkLength = 4000
 
 var isRunningNormal = false
 var isRunningBlink = false
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+});
 
 app.get('/timeconfig/:color/:length/:type', (request, response) => {
      if(request.params.type == "normal") {
@@ -152,27 +160,40 @@ function setRedOnly() {
     redLight.write(1)
     yellowLight.write(0)
     greenLight.write(0)
+    io.emit("change", {
+        "lightChange": "redOnly"
+    })
 }
 
 function setYellowOnly() {
     redLight.write(0)
     yellowLight.write(1)
     greenLight.write(0)
+    io.emit("change", {
+        "lightChange": "yellowOnly"
+    })
 }
 
 function setGreenOnly() {
     redLight.write(0)
     yellowLight.write(0)
     greenLight.write(1)
+    io.emit("change", {
+        "lightChange": "greenOnly"
+    })
 }
 
 function clearAll() {
     redLight.write(0)
     yellowLight.write(0)
     greenLight.write(0)
+    io.emit("change", {
+        "lightChange": "allOff"
+    })
 }
 
 
 app.listen(7890, () => {
     console.log(`Server is Listening on 7890`)
 })
+server.listen(7891)
